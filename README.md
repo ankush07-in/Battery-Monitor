@@ -17,3 +17,11 @@ git clone <repository-url>
 cd battery-monitor
 
 ```
+
+# Output:
+
+![Battery Status](images/output_01.png)
+
+![Battery Status](images/output_02.png)
+
+![Battery Status](images/output_03.png)
