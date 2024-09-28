@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Battery Monitor</title>
+    <script src="http://192.168.0.103:3000/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('http://192.168.0.103:3000'); // Update with your desktop's IP
+
+        socket.on('update', (data) => {
+            document.getElementById('battery-status').innerText = 
+                `Battery: ${data.level}% - Charging: ${data.charging}`;
+            if (data.level === 100 && data.charging) {
+                alert('Your device is fully charged!');
+            }
+        });
+
+        function sendBatteryStatus(level, charging) {
+            socket.emit('batteryStatus', { level, charging });
+        }
+    </script>
+</head>
+<body>
+    <h1>Battery Status</h1>
+    <div id="battery-status">Waiting for status...</div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Monitor</title>
+    <style>
+        body{
+            background: black;
+            color: white;
+        }
+    </style>
+    <script src="http://192.168.0.103:3000/socket.io/socket.io.js"></script>
+    <script>
+        // Initialize the socket connection
+        const socket = io('http://192.168.0.103:3000'); // Update with your server's IP
+
+        // Listen for battery status updates
+        socket.on('update', (data) => {
+            document.getElementById('battery-status').innerText = 
+                `Battery: ${data.level}% - Charging: ${data.charging ? 'Yes' : 'No'}`;
+            if (data.level === 100 && data.charging) {
+                alert('Your device is fully charged!');
+            }
+        });
+
+        // Optional: If you want to manually send battery status (not used here)
+        function sendBatteryStatus(level, charging) {
+            socket.emit('batteryStatus', { level, charging });
+        }
+    </script>
+</head>
+<body>
+    <h1>Battery Status</h1>
+    <div id="battery-status">Waiting for status...</div>
+</body>
+</html>
